@@ -1,0 +1,51 @@
+<h1>Listing treatments</h1>
+<% if @treatments == nil %>
+  No tiene ningun tratamiento enlazado a su cuenta
+  <% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Specialist</th>
+      <th>Treatment type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Observation</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @treatments.each do |treatment| %>
+      <tr>
+        <% @t =Treatment.find(treatment.id) %>
+        <% @treatment_id =treatment.id %>
+        <% session[:treatment_id] = @treatment_id %>
+        <td><%= @t.patient.person.login %></td>
+        <td><%= @t.specialist.person.login %></td>
+        <td><%= treatment.treatment_type %></td>
+        <td><%= treatment.start_date %></td>
+        <td><%= treatment.end_date %></td>
+        <td><%= treatment.observation %></td>
+        <td><%= link_to 'Show', treatment %></td>
+        <% if session[:permission] == 1 or session[:permission] == 2 %>
+        <td><%= link_to 'New Visit', controller: "visits", action: 'new', treatment_id: @treatment_id %></td>
+        <td><%= link_to 'Show Visits', controller: 'visits', action: 'index', treatment_id: @treatment_id %></td>
+        <% end %>
+        <td><%= link_to 'Edit', edit_treatment_path(treatment) %></td>
+        <td><%= link_to 'Destroy', treatment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+<% if session[:permission] == 1 or session[:permission] == 2 %>
+<%= link_to 'New Treatment', controller: "treatments", action: "new", specialist_id: Person.find(session[:id]).specialist.id %>
+el id correspondiente del especialista es <%= Person.find(session[:id]).specialist.id %>
+
+<% end %>
+<%= link_to 'Back to Profile', controller: 'people', action: 'index' %>
+

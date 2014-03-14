@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @person.login %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @person.password %>
+</p>
+
+<p>
+  <strong>Dni:</strong>
+  <%= @person.dni %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+
+<p>
+  <strong>Paternal last:</strong>
+  <%= @person.paternal_last %>
+</p>
+
+<p>
+  <strong>Maternal last:</strong>
+  <%= @person.maternal_last %>
+</p>
+
+<p>
+  <strong>Years:</strong>
+  <%= @person.years %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @person.sex %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @person.address %>
+</p>
+
+<p>
+  <strong>Date birth:</strong>
+  <%= @person.date_birth %>
+</p>
+
+<p>
+  <strong>Permission:</strong>
+  <%= @person.permission %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @person.state %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

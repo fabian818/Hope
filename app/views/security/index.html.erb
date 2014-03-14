@@ -1,0 +1,20 @@
+<h1>Login</h1>
+<p>Find me in app/views/security/index.html.erb</p>
+<%= form_tag({controller: "security", action: "login"}, method: "post") do %>
+  <div class="field">
+    <%= label_tag :login %><br/>
+    <%= text_field_tag :login %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br/>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+<% if @error == "1" %>
+  <div class ="error" >
+    Usuario o contraeña incorrectos.
+  </div>
+<% end %>

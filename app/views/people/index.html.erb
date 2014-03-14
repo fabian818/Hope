@@ -1,0 +1,60 @@
+<h1>My Profile</h1>
+
+<table border ='1' align='center'>
+  <thead>
+    <tr>
+      <th>Login</th>
+      <th>Password</th>
+      <th>Dni</th>
+      <th>Name</th>
+      <th>Paternal last</th>
+      <th>Maternal last</th>
+      <th>Years</th>
+      <th>Sex</th>
+      <th>Address</th>
+      <th>Date birth</th>
+      <th>Permission</th>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.login %></td>
+        <td><%= person.password %></td>
+        <td><%= person.dni %></td>
+        <td><%= person.name %></td>
+        <td><%= person.paternal_last %></td>
+        <td><%= person.maternal_last %></td>
+        <td><%= person.years %></td>
+        <td><%= person.sex %></td>
+        <td><%= person.address %></td>
+        <td><%= person.date_birth %></td>
+        <td><%= person.permission %></td>
+        <td><%= person.state %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <% if @permission == 1 %>
+        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% if @permission == 1 %>
+<%= link_to 'New Persona', new_person_path %><br>
+<%= link_to 'Add Pacient' , controller: "patients" , action: "new" %><br>
+<%= link_to 'Add Especialist' , controller: "specialists" , action: "new" %><br>
+<% end %>
+<%= link_to 'Show Treatments' , controller: "treatments" , action: "index" %><br>
+<%= link_to 'Show Questions', controller: "questions", action: "index" %><br>
+<%= link_to 'Show Answers', controller: "answers", action: "index" %><br>
+<%= link_to 'Cerrar Sesión', controller: "security", action: "logout" %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Treatment:</strong>
+  <%= @visit.treatment_id %>
+</p>
+
+<p>
+  <strong>Assistance date:</strong>
+  <%= @visit.assistance_date %>
+</p>
+
+<p>
+  <strong>Visit type:</strong>
+  <%= @visit.visit_type %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @visit.observation %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @visit.state %>
+</p>
+<% session[:treatment_id] = @visit.treatment_id %>
+El id de tratamiento es : <%= session[:treatment_id] %>
+<br>
+<%= link_to 'Edit', edit_visit_path(@visit), treatment_id: @treatment_id %> |
+<%= link_to 'Back', visits_path, treatment_id: @treatment_id %>

@@ -1,0 +1,17 @@
+<h1>New treatment</h1>
+<% @patients.each do |p| %>
+	<p><%= p.id %></p>
+<% end %>
+<% @patient_person.each do |n| %>
+	<p><%= n.login %></p>
+<% end %>
+---------------------
+<% @specialists.each do |e| %>
+	<p><%= e.id %></p>
+<% end %>
+<% @specialist_person.each do |e| %>
+	<p><%= e.login %></p>
+<% end %>
+<%= render 'form' %>
+id de especialista :<%= params[:specialist_id] %>
+<%= link_to 'Back', treatments_path %>

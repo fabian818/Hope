@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Visit:</strong>
+  <%= @result.visit_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @result.description %>
+</p>
+
+<p>
+  <strong>Reg date:</strong>
+  <%= @result.reg_date %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

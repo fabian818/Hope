@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @question.patient_id %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @question.person_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @question.body %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @question.level %>
+</p>
+
+<p>
+  <strong>Reg date:</strong>
+  <%= @question.reg_date %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

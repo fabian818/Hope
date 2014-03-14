@@ -1,0 +1,51 @@
+  [1m[36m (233.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (279.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreatePeople (20140311193851)
+  [1m[35m (234.0ms)[0m  CREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255), `password` varchar(255), `dni` varchar(255), `name` varchar(255), `paternal_last` varchar(255), `maternal_last` varchar(255), `years` int(11), `sex` varchar(255), `address` varchar(255), `date_birth` date, `permission` int(11), `state` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (117.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311193851')
+  [1m[36m (187.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePatients (20140311193947)
+  [1m[35m (285.7ms)[0m  CREATE TABLE `patients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `person_id` int(11), `targa` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311193947')
+  [1m[36m (141.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSpecialists (20140311194259)
+  [1m[35m (154.3ms)[0m  CREATE TABLE `specialists` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `person_id` int(11), `speciality` varchar(255), `shift` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311194259')
+  [1m[36m (52.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestions (20140311194455)
+  [1m[35m (132.1ms)[0m  CREATE TABLE `questions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `patient_id` int(11), `person_id` int(11), `title` varchar(255), `body` text, `level` int(11), `reg_date` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311194455')
+  [1m[36m (41.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAnswers (20140311194610)
+  [1m[35m (188.2ms)[0m  CREATE TABLE `answers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `question_id` int(11), `person_id` int(11), `title` varchar(255), `body` text, `reg_date` date, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311194610')
+  [1m[36m (64.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTreatments (20140311194801)
+  [1m[35m (255.1ms)[0m  CREATE TABLE `treatments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `patient_id` int(11), `specialist_id` int(11), `treatment_type` varchar(255), `start_date` date, `end_date` date, `observation` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311194801')
+  [1m[36m (42.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateVisits (20140311194956)
+  [1m[35m (221.3ms)[0m  CREATE TABLE `visits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `treatment_id` int(11), `assistance_date` datetime, `visit_type` varchar(255), `observation` text, `state` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311194956')
+  [1m[36m (41.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResults (20140311195153)
+  [1m[35m (187.7ms)[0m  CREATE TABLE `results` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `visit_id` int(11), `description` text, `reg_date` date, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140311195153')
+  [1m[36m (53.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddSessionsTable (20140312162413)
+  [1m[35m (155.2ms)[0m  CREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (245.3ms)[0m  [1mCREATE UNIQUE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`) [0m
+  [1m[35m (256.0ms)[0m  CREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`) 
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140312162413')
+  [1m[36m (52.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`

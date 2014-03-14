@@ -1,0 +1,45 @@
+<h1>Listing visits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Treatment</th>
+      <th>Assistance date</th>
+      <th>Visit type</th>
+      <th>Observation</th>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td><%= visit.treatment_id %></td>
+        <td><%= visit.assistance_date %></td>
+        <td><%= visit.visit_type %></td>
+        <td><%= visit.observation %></td>
+        <td><%= visit.state %></td>
+        <td><%= link_to 'Show', visit %></td>
+        <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
+        <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if params[:treatment_id] != nil %>
+  <% session[:treatment_id] = params[:treatment_id] %>
+  <% @treatment_id = params[:treatment_id] %>
+<% else %>
+  <% @treatment_id = session[:treatment_id] %>
+<% end %>
+El id de tratamiento es : <%= @treatment_id %>
+<br>
+<%= link_to 'New Visit', new_visit_path, treatment_id: @treatment_id %>
+<%= link_to 'Back to Treatments', controller: "treatments", action: "index" %>
+<%= link_to 'Back to Profile', controller: "people", action: "index" %>

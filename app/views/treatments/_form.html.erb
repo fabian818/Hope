@@ -1,0 +1,54 @@
+<%= form_for(@treatment) do |f| %>
+  <% if @treatment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@treatment.errors.count, "error") %> prohibited this treatment from being saved:</h2>
+
+      <ul>
+      <% @treatment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% @specialist_name = Specialist.find(params[:specialist_id]).person.name %>
+  <% @specialist_paternal_lastname = Specialist.find(params[:specialist_id]).person.paternal_last %>
+  <% @specialist_maternal_lastname = Specialist.find(params[:specialist_id]).person.maternal_last %>
+
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
+  </div>
+  <% if session[:permission]==2 %>
+    <div class="field">
+    <%= f.label :specialist_id, "Especialista : "+@specialist_name+" "+@specialist_paternal_lastname+" "+@specialist_maternal_lastname %><br>
+    <%= f.hidden_field :specialist_id , value: params[:specialist_id] %>
+    </div>
+  <% else %>
+    <% if session[:permission]==1 %>
+      <div class="field">
+      <%= f.label :specialist_id %><br>
+      <%= f.text_field :specialist_id %>
+    <% end %>
+  <% end %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :treatment_type %><br>
+    <%= f.text_field :treatment_type %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :observation %><br>
+    <%= f.text_area :observation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

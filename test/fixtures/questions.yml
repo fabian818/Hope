@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient_id: 1
+  person_id: 1
+  title: MyString
+  body: MyText
+  level: 1
+  reg_date: 2014-03-11 14:44:55
+
+two:
+  patient_id: 1
+  person_id: 1
+  title: MyString
+  body: MyText
+  level: 1
+  reg_date: 2014-03-11 14:44:55

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treatment_id: 1
+  assistance_date: 2014-03-11 14:49:56
+  visit_type: MyString
+  observation: MyText
+  state: false
+
+two:
+  treatment_id: 1
+  assistance_date: 2014-03-11 14:49:56
+  visit_type: MyString
+  observation: MyText
+  state: false
